@@ -6,6 +6,8 @@
 
 本项目为采用前后端分离的方式开发，本仓库为Bot的客户端源码，源码基于React开发，相关的技术文档参考: [https://react.docschina.org/](https://react.docschina.org/)
 
+服务端项目地址：[https://github.com/fanbook-open/fanbook-authentication-bot-server](https://github.com/fanbook-open/fanbook-authentication-bot-server)
+
 ## 使用说明
 
 1. clone项目到本地
