@@ -1,70 +1,62 @@
-# Getting Started with Create React App
+# 身份认证Bot
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+> Bot主要用于方便用户基于腾讯文档，完成身份的认证，实现Fanbook用户与其他平台的数据打通。
 
-## Available Scripts
+##  项目说明
 
-In the project directory, you can run:
+本项目为采用前后端分离的方式开发，本仓库为Bot的客户端源码，源码基于React开发，相关的技术文档参考: [https://react.docschina.org/](https://react.docschina.org/)
 
-### `npm start`
+## 使用说明
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. clone项目到本地
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```git clone https://github.com/fanbook-open/fanbook-authentication-bot-client.git```
 
-### `npm test`
+2. 执行脚本安装相关依赖；
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```npm install```
 
-### `npm run build`
+3. 构建项目部署到服务器；
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+执行 ```npm build``` 脚本，构建项目到```dist```目录下，打包构建文档部署到服务器上；
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+4. 本地开发运行
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+本地调试开发执行脚本```npm start```
 
-### `npm run eject`
+## nginx配置
+ 
+ ```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+ server {
+        listen 3203;
+        root /var/www/txdoc-client;
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+        location /fanbook/redirect {
+            rewrite /* https://oauth.fanbook.mobi/authorize?response_type=code&client_id=your_client_id permanent;
+        }
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+        location /fanbook/ {
+               proxy_pass http://your_server_host:9999/fanbook/ ;
+        }
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+    }
 
-## Learn More
+ ```
+1. 修改配置文件中的```your_client_id```, 参数可以在[开放平台](https://open.fanbook.mobi/)获得。 
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+![开放平台](./static/openimg.png)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
+2. 修改配置文件中的```your_server_host```, 为服务端部署地址。
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+3. oauth授权设置
 
-### Analyzing the Bundle Size
+![权限](./static/qrxm.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
