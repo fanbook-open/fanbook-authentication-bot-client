@@ -20,11 +20,19 @@
 
 3. 构建项目部署到服务器；
 
-执行 ```npm build``` 脚本，构建项目到```dist```目录下，打包构建文档部署到服务器上；
+执行 ```npm run build``` 脚本，构建项目到```dist```目录下，打包构建文档部署到服务器上；
 
 4. 本地开发运行
 
 本地调试开发执行脚本```npm start```
+
+### 补充说明
+
+由于程序中需要用到用户的个人信息，所以接口调试需要在Fanbook频道内进行；
+
+```http://your_url/?fb_redirect&open_type=mp```
+
+运行的h5的访问地址加上```fb_redirect&open_type=mp```后缀就可以在Fanbook频道内以Fanbook小程序的方式运行；
 
 ## nginx配置
  
