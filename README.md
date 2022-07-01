@@ -65,6 +65,13 @@
 ![权限](./static/qrxm.png)
 
 
+## Fanbook
+
+[开放平台](https://open.fanbook.mobi/)
+
+[开发者文档](https://open.fanbook.mobi/document/manage/doc/)
+
+
 
 
 
